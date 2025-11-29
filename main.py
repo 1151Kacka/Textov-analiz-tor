@@ -58,24 +58,30 @@ def selectText():
     selection = input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")
     if not selection.isdigit():
         print("Invalid input. Please enter a number. Terminating.") 
-        return False
+        return None
     index = int(selection) - 1
     if index not in range(len(TEXTS)):
         print(f"Invalid text number. Select between 1 and {len(TEXTS)}. Terminating.")
-        return False 
+        return None 
     return TEXTS[index]
 
 def analyze_text(text):
-    text = TEXTS(selectText)
-    words = [word for word in text.split() if word]
+    words = []
+    for word in text.split():
+        cleaned_word = word.strip(".,!?;:")
+        if cleaned_word:
+            words.append(cleaned_word)
+
     titlecase_count = 0
     uppercase_count = 0
     lowercase_count = 0
     numeric_count = 0
     numeric_sum = 0
-    word_lengths = 0
+    word_lengths = {}
 
-    for word in words: 
+    for word in words:
+        word_len = len(word)
+        word_lengths[word_len] = word_lengths.get(word_len, 0) + 1
         if word.isdigit():
             numeric_count += 1  
             numeric_sum += int(word)  
@@ -95,4 +101,10 @@ def analyze_text(text):
     print(f"The sum of all the numbers {numeric_sum}")
     print("----------------------------------------")
     print(word_lengths)
+    for length in sorted(word_lengths.keys()):
+        count = word_lengths[length]
+        bar = "*" * count
+        print(f"{length}|{bar} |{count}")
   
+if __name__ == "__main__":
+    main()
