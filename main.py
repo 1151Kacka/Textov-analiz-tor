@@ -80,18 +80,18 @@ def analyze_text(text):
     word_lengths = {}
 
     for word in words:
-        word_len = len(word)
-        word_lengths[word_len] = word_lengths.get(word_len, 0) + 1
+        
         if word.isdigit():
             numeric_count += 1  
             numeric_sum += int(word)  
-        elif word.istitle():
-            titlecase_count += 1
         elif word.isupper():
             uppercase_count += 1
+        elif word.istitle():
+            titlecase_count += 1
         elif word.islower():
             lowercase_count += 1
-        word_lengths[len(word)] += 1
+        word_len = len(word)
+        word_lengths[word_len] = word_lengths.get(word_len, 0) + 1
     print("----------------------------------------")
     print(f"There are {len(words)} words in the selected text.")
     print(f"There are {titlecase_count} titlecase words.")
@@ -101,6 +101,7 @@ def analyze_text(text):
     print(f"The sum of all the numbers {numeric_sum}")
     print("----------------------------------------")
     print(word_lengths)
+    print("LEN| OCCURRENCES |NR.")
     for length in sorted(word_lengths.keys()):
         count = word_lengths[length]
         bar = "*" * count
