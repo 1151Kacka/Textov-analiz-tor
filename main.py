@@ -101,11 +101,11 @@ def analyze_text(text):
     print(f"The sum of all the numbers {numeric_sum}")
     print("----------------------------------------")
     print(word_lengths)
-    print("LEN| OCCURRENCES |NR.")
+    print("LEN|  OCCURRENCES  |NR.")
     for length in sorted(word_lengths.keys()):
         count = word_lengths[length]
         bar = "*" * count
-        print(f"{length}|{bar} |{count}")
+        print(f"{length:>3}|{bar:<15}|{count:<3}")
   
 if __name__ == "__main__":
     main()
