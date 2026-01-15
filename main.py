@@ -58,11 +58,11 @@ def selectText():
     selection = input(f"Enter a number btw. 1 and {len(TEXTS)} to select: ")
     if not selection.isdigit():
         print("Invalid input. Please enter a number. Terminating.") 
-        return None
+        quit()
     index = int(selection) - 1
     if index not in range(len(TEXTS)):
         print(f"Invalid text number. Select between 1 and {len(TEXTS)}. Terminating.")
-        return None 
+        quit()
     return TEXTS[index]
 
 def analyze_text(text):
